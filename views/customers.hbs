@@ -1,0 +1,107 @@
+<h1>Customer page</h1>
+
+<table>
+    <thead>
+            {{#each customers.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each customers}}
+        <tr>
+            <td>{{this.customer_id}}</td>
+            <td>{{this.first_name}}</td>
+            <td>{{this.last_name}}</td>
+            <td>{{this.street}}</td>
+            <td>{{this.city}}</td>
+            <td>{{this.state}}</td>
+            <td>{{this.zip}}</td>
+            <td>{{this.email}}</td>
+            <td>{{this.phone}}</td>
+
+
+            {{! DELETE form }}
+            <form id='delete_coffee_form'>
+                <input type='hidden' name='delete_customer_id' value='{{this.coffee_id}}' />
+                <input type='hidden' name='delete_customer_first_name' value='{{this.first_name}}' />
+                <input type='hidden' name='delete_customer_last_name' value='{{this.last_name}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Add a Customer</h2>
+<form class='cuForm' id='create_customer_form'>
+    <label for='create_customer_first_name'>First name: </label>
+    <input type='text' name='create_customer_first_name' id='create_customer_first_name' required />
+
+    <label for='create_customer_last_name'>Last Name: </label>
+    <input type='text' name='create_customer_last_name' id='create_customer_last_name' required />
+
+    <label for='create_customer_street'>Street: </label>
+    <input type='text' name='create_customer_street' id='create_customer_street' required />
+
+    <label for='create_customer_city'>City: </label>
+    <input type='text' name='create_customer_city' id='create_customer_city' required />
+
+    <label for='create_customer_zip'>Zip: </label>
+    <input type='text' name='create_customer_zip' id='create_customer_zip' required />
+
+    <label for='create_customer_email'>Email: </label>
+    <input type='text' name='create_customer_email' id='create_customer_email' required />
+
+    <label for='create_customer_phone'>Phone: </label>
+    <input type='text' name='create_customer_phone' id='create_customer_phone' required />
+    <input type='submit' />
+</form>
+
+{{! UPDATE form }}
+<form class='cuForm' id='update_customer_form'>
+    <label for='update_customer_id'>Customer to Update: </label>
+    <select name='update_customer_id' id='update_customer_id' required>
+        <option value='' disabled selected>Select a Customer</option>
+        {{#each customers}}
+        <option value='{{this.customer_id}}' required>
+            {{this.customer_id}} 
+            - 
+            {{this.first_name}}
+            {{this.last_name}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='update_customer_first_name'>First name: </label>
+    <input type='text' name='update_customer_first_name' id='update_customer_first_name' required />
+
+    <label for='update_customer_last_name'>Last Name: </label>
+    <input type='text' name='update_customer_last_name' id='update_customer_last_name' required />
+
+    <label for='update_customer_street'>Street: </label>
+    <input type='text' name='update_customer_street' id='update_customer_street' required />
+
+    <label for='update_customer_city'>City: </label>
+    <input type='text' name='update_customer_city' id='update_customer_city' required />
+
+    <label for='update_customer_zip'>Zip: </label>
+    <input type='text' name='update_customer_zip' id='update_customer_zip' required />
+
+    <label for='update_customer_email'>Email: </label>
+    <input type='text' name='update_customer_email' id='update_customer_email' required />
+
+    <label for='update_customer_phone'>Phone: </label>
+    <input type='text' name='update_customer_phone' id='update_customer_phone' required />
+
+    <input type='submit' />
+</form>

@@ -1,0 +1,112 @@
+<h1>Payment Methods page</h1>
+
+<table>
+    <thead>
+            {{#each paymentMethods.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {{#each paymentMethods}}
+        <tr>
+            <td>{{this.payment_method_id}}</td>
+            <td>{{this.number}}</td>
+            <td>{{this.expiration}}</td>
+            <td>{{this.origin}}</td>
+            <td>{{this.cvv}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.customer.id}}</td>
+
+
+            {{! DELETE form }}
+            <form id='delete_coffee_form'>
+                <input type='hidden' name='delete_payment_method_id' value='{{this.payment_method_id}}' />
+                <input type='hidden' name='delete_payment_method_name' value='{{this.name}}' />
+                <td>
+                    <button type='submit'>
+                        Delete
+                    </button>
+                </td>
+            </form>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+{{! CREATE form }}
+<h2>Add a Coffee</h2>
+<form class='cuForm' id='create_payment_method_form'>
+   <label for='create_payment_method_customer_id'>Customer: </label>
+    <select name='create_payment_method_customer_id' id='create_payment_method_customer_id' required>
+        <option value='' disabled selected>Select a Customer</option>
+        {{#each customers}}
+        <option value='{{this.customer_id}}' required>
+            {{this.customer_id}} 
+            - 
+            {{this.first_name}}
+            {{this.last_name}}
+        </option>
+        {{/each}}
+
+    <label for='create_payment_method_number'>Card Number: </label>
+    <input type='text' name='create_payment_method_number' id='create_payment_method_number' maxlength="16" required/>
+
+    <label for='create_payment_method_expiration'>Expiration (MMYY): </label>
+    <input type='text' name='create_payment_method_expiration' id='create_payment_method_expiration' maxlength='4' required />
+
+    <label for='create_payment_method_cvv'>CVV: </label>
+    <input type='text' name='create_payment_method_cvv' id='create_payment_method_cvv' maxlength='4'  required />
+
+    <label for='create_payment_method_name'>Cardholder Name: </label>
+    <input type='text' name='create_payment_method_name' id='create_payment_method_name' />
+
+    <input type='submit' />
+</form>
+
+{{! UPDATE form }}
+<h2>Update a Payment Method</h2>
+<form class='cuForm' id='update_payment_method_form'>
+    <label for='update_payment_method_id'>Payment Method to Update: </label>
+    <select name='update_payment_method_id' id='update_payment_method_id' required>
+        <option value='' disabled selected>Select a Payment Method</option>
+        {{#each payment_methods}}
+        <option value='{{this.payment_method_id}}' required>
+            {{this.payment_method_id}} 
+            - 
+            {{this.name}} 
+            {{this.number}}
+        </option>
+        {{/each}}
+    </select>
+
+    <label for='update_payment_method_number'>Card Number: </label>
+    <input type='text' name='update_payment_method_number' id='update_payment_method_number' maxlength='16' />
+
+    <label for='update_payment_method_expiration'>Expiration (MMYY): </label>
+    <input type='text' name='update_payment_method_expiration' id='update_payment_method_expiration' maxlength='4'  />
+
+    <label for='update_payment_method_cvv'>CVV: </label>
+    <input type='text' name='update_payment_method_cvv' id='update_payment_method_cvv' maxlength='4'  />
+
+    <label for='update_payment_method_name'>Cardholder Name: </label>
+    <input type='text' name='update_payment_method_name' id='update_payment_method_name' />
+
+    <label for='update_payment_method_customer_id'>Customer: </label>
+    <select name='update_payment_method_customer_id' id='update_payment_method_customer_id'>
+
+        <option value='' disabled selected>Select a Customer</option>
+        {{#each customers}}
+        <option value='{{this.customer_id}}'>
+            {{this.customer_id}} 
+            - 
+            {{this.first_name}} 
+            {{this.last_name}}
+        </option>
+        {{/each}}
+    </select>
+</form>
