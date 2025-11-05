@@ -1,3 +1,4 @@
 ./.idea
 ./database/db-connector.js
 ./node_modules
+.env
