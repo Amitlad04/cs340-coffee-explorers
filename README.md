@@ -1,2 +1,2 @@
 # cs340-coffee-explorers
-Main project for 
+Main project for CS340
