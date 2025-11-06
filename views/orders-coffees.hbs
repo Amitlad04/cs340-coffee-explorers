@@ -1,8 +1,8 @@
-<h1>Coffee Orders</h1>
+<h1>Orders Line Items</h1>
 
 <table>
     <thead>
-            {{#each orders_has_coffees.[0]}}
+            {{#each orders_coffees.[0]}}
             <th>
                 {{@key}}
             </th>
@@ -12,10 +12,10 @@
     </thead>
 
     <tbody>
-        {{#each orders_has_coffees}}
+        {{#each orders_coffees}}
         <tr>
-            <td>{{this.Orders_order_id}}</td>
-            <td>{{this.Coffees_coffee_id}}</td>
+            <td>{{this.order_id}}</td>
+            <td>{{this.name}}</td>
             <td>{{this.qty}}</td>
             <td>{{this.price_at_order}}</td>
 
@@ -90,7 +90,7 @@
     <label for='update_orders_has_coffees_qty'>Quantity: </label>
     <input type='number' name='update_orders_has_coffees_qty' id='update_orders_has_coffees_qty' />
 
-    <label for='update_orders_has_coffees_price_at_order'>Price of Order: </label>
+    <label for='update_orders_has_coffees_price_at_order'>Price at Order: </label>
     <input type='number'  name='update_orders_has_coffees_price_at_order' id='update_orders_has_coffees_price_at_order' />
 
     <input type='submit' />

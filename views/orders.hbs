@@ -17,8 +17,8 @@
         <tr>
             <td>{{this.order_id}}</td>
             <td>{{this.order_time_date}}</td>
-            <td>{{this.customer_id}}</td>
-            <td>{{this.payment_method_id}}</td>
+            <td>{{this.first_name}}</td>
+            <td>{{this.last_name}}</td>
 
 
 
@@ -39,18 +39,15 @@
 {{! CREATE form }}
 <h2>Create an Order</h2>
 <form class='cuForm' id='create_order_form'>
-  <label for="create_order_time_date">Order Date and Time:</label>
+  <label for="create_order_time_date">Order Date and Time: </label>
   <input type="datetime" name="create_order_time_date" id="create_order_time_date" required />
 
-    <label for="create_order_customer">Customer and Payment Method:</label>
+    <label for="create_order_customer">Customer: </label>
     <select name="create_order_customer" id="create_order_customer" required>
     <option value="" disabled selected>Select a Customer</option>
     {{#each customers}}
       <option value="{{this.customer_id}}">
-        {{this.customer_name}} 
-        — 
-        Payment Method 
-        {{this.payment_method_id}}
+        {{this.first_name}} {{this.last_name}}
       </option>
     {{/each}}
   </select>
@@ -62,7 +59,7 @@
 <form class='cuForm' id='update_order_form'>
     <label for='update_order_time_date'>Order to Update: </label>
     <select name='update_order_time_date' id='update_order_time_date' required>
-        <option value='' disabled selected>Select a Order</option>
+        <option value='' disabled selected>Select an Order</option>
         {{#each orders}}
         <option value='{{this.order_time_date}}' required>
             {{this.order_time_date}} 
