@@ -56,8 +56,9 @@
 </form>
 
 {{! UPDATE form }}
+<h2>Order to Update:</h2>
 <form class='cuForm' id='update_order_form'>
-    <label for='update_order_time_date'>Order to Update: </label>
+    <label for='update_order_time_date'>Select an Order to Update: </label>
     <select name='update_order_time_date' id='update_order_time_date' required>
         <option value='' disabled selected>Select an Order</option>
         {{#each orders}}
