@@ -41,74 +41,80 @@
     </tbody>
 </table>
 
-{{! CREATE form }}
-<h2>Add a Customer</h2>
-<form class='cuForm' id='create_customer_form'>
-    <label for='create_customer_first_name'>First name: </label>
-    <input type='text' name='create_customer_first_name' id='create_customer_first_name' required />
+<div class="forms-container">
+     <div class="forms-container">
+        {{! CREATE form }}
+        <h2>Add a Customer</h2>
+        <form class='cuForm' id='create_customer_form'>
+            <label for='create_customer_first_name'>First name: </label>
+            <input type='text' name='create_customer_first_name' id='create_customer_first_name' required />
 
-    <label for='create_customer_last_name'>Last Name: </label>
-    <input type='text' name='create_customer_last_name' id='create_customer_last_name' required />
+            <label for='create_customer_last_name'>Last Name: </label>
+            <input type='text' name='create_customer_last_name' id='create_customer_last_name' required />
 
-    <label for='create_customer_street'>Street: </label>
-    <input type='text' name='create_customer_street' id='create_customer_street' required />
+            <label for='create_customer_street'>Street: </label>
+            <input type='text' name='create_customer_street' id='create_customer_street' required />
 
-    <label for='create_customer_city'>City: </label>
-    <input type='text' name='create_customer_city' id='create_customer_city' required />
+            <label for='create_customer_city'>City: </label>
+            <input type='text' name='create_customer_city' id='create_customer_city' required />
 
-    <label for='create_customer_state'>State: </label>
-    <input type='text' name='create_customer_state' id='create_customer_state' required />
+            <label for='create_customer_state'>State: </label>
+            <input type='text' name='create_customer_state' id='create_customer_state' required />
 
-    <label for='create_customer_zip'>Zip: </label>
-    <input type='text' name='create_customer_zip' id='create_customer_zip' required />
+            <label for='create_customer_zip'>Zip: </label>
+            <input type='text' name='create_customer_zip' id='create_customer_zip' required />
 
-    <label for='create_customer_email'>Email: </label>
-    <input type='text' name='create_customer_email' id='create_customer_email' required />
+            <label for='create_customer_email'>Email: </label>
+            <input type='text' name='create_customer_email' id='create_customer_email' required />
 
-    <label for='create_customer_phone'>Phone: </label>
-    <input type='text' name='create_customer_phone' id='create_customer_phone' required />
-    <input type='submit' />
-</form>
+            <label for='create_customer_phone'>Phone: </label>
+            <input type='text' name='create_customer_phone' id='create_customer_phone' required />
+            <input type='submit' />
+        </form>
+     </div>
 
-{{! UPDATE form }}
-<h2>Update a Customer</h2>
-<form class='cuForm' id='update_customer_form'>
-    <label for='update_customer_id'>Customer to Update: </label>
-    <select name='update_customer_id' id='update_customer_id' required>
-        <option value='' disabled selected>Select a Customer</option>
-        {{#each customers}}
-        <option value='{{this.customer_id}}' required>
-            {{this.customer_id}} 
-            - 
-            {{this.first_name}}
-            {{this.last_name}}
-        </option>
-        {{/each}}
-    </select>
+     <div class="form-section">
+        {{! UPDATE form }}
+        <h2>Update a Customer</h2>
+        <form class='cuForm' id='update_customer_form'>
+            <label for='update_customer_id'>Customer to Update: </label>
+            <select name='update_customer_id' id='update_customer_id' required>
+                <option value='' disabled selected>Select a Customer</option>
+                {{#each customers}}
+                <option value='{{this.customer_id}}' required>
+                    {{this.customer_id}}
+                    -
+                    {{this.first_name}}
+                    {{this.last_name}}
+                </option>
+                {{/each}}
+            </select>
 
-    <label for='update_customer_first_name'>First name: </label>
-    <input type='text' name='update_customer_first_name' id='update_customer_first_name' required />
+            <label for='update_customer_first_name'>First name: </label>
+            <input type='text' name='update_customer_first_name' id='update_customer_first_name' required />
 
-    <label for='update_customer_last_name'>Last Name: </label>
-    <input type='text' name='update_customer_last_name' id='update_customer_last_name' required />
+            <label for='update_customer_last_name'>Last Name: </label>
+            <input type='text' name='update_customer_last_name' id='update_customer_last_name' required />
 
-    <label for='update_customer_street'>Street: </label>
-    <input type='text' name='update_customer_street' id='update_customer_street' required />
+            <label for='update_customer_street'>Street: </label>
+            <input type='text' name='update_customer_street' id='update_customer_street' required />
 
-    <label for='update_customer_city'>City: </label>
-    <input type='text' name='update_customer_city' id='update_customer_city' required />
+            <label for='update_customer_city'>City: </label>
+            <input type='text' name='update_customer_city' id='update_customer_city' required />
 
-    <label for='update_customer_state'>State: </label>
-    <input type='text' name='update_customer_state' id='update_customer_state' required />
+            <label for='update_customer_state'>State: </label>
+            <input type='text' name='update_customer_state' id='update_customer_state' required />
 
-    <label for='update_customer_zip'>Zip: </label>
-    <input type='text' name='update_customer_zip' id='update_customer_zip' required />
+            <label for='update_customer_zip'>Zip: </label>
+            <input type='text' name='update_customer_zip' id='update_customer_zip' required />
 
-    <label for='update_customer_email'>Email: </label>
-    <input type='text' name='update_customer_email' id='update_customer_email' required />
+            <label for='update_customer_email'>Email: </label>
+            <input type='text' name='update_customer_email' id='update_customer_email' required />
 
-    <label for='update_customer_phone'>Phone: </label>
-    <input type='text' name='update_customer_phone' id='update_customer_phone' required />
+            <label for='update_customer_phone'>Phone: </label>
+            <input type='text' name='update_customer_phone' id='update_customer_phone' required />
 
-    <input type='submit' />
-</form>
+            <input type='submit' />
+        </form>
+     </div>
+</div>

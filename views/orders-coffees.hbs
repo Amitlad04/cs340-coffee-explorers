@@ -34,64 +34,70 @@
     </tbody>
 </table>
 
-{{! CREATE form }}
-<h2>Add a Coffee to Order</h2>
-<form class='cuForm' id='create_orders_has_coffees_form'>
-    <label for='create_order_has_coffees_order_id'>Order: </label>
-    <select name='create_order_has_coffees_order_id' id='create_order_has_coffees_order_id' required>
-        <option value='' disabled selected>Select an Order</option>
-        {{#each orders}}
-        <option value='{{this.order_id}}' required>{{this.order_id}}</option>
-        {{/each}}
-    </select>
-    <label for='create_orders_has_coffees_coffee_id'>Coffee: </label>
-    <select name='create_orders_has_coffees_coffee_id' id='create_orders_has_coffees_coffee_id' required>
-         <option value='' disabled selected>Select an Coffee</option>
-        {{#each coffees}}
-        <option value='{{this.coffee_id}}'>
-            {{this.name}}
-            - 
-            {{this.price}}
-        </option>
-        {{/each}}
-    </select>
+<div class="forms-container">
+    <div class="forms-section">
+        {{! CREATE form }}
+        <h2>Add a Coffee to Order</h2>
+        <form class='cuForm' id='create_orders_has_coffees_form'>
+            <label for='create_order_has_coffees_order_id'>Order: </label>
+            <select name='create_order_has_coffees_order_id' id='create_order_has_coffees_order_id' required>
+                <option value='' disabled selected>Select an Order</option>
+                {{#each orders}}
+                <option value='{{this.order_id}}' required>{{this.order_id}}</option>
+                {{/each}}
+            </select>
+            <label for='create_orders_has_coffees_coffee_id'>Coffee: </label>
+            <select name='create_orders_has_coffees_coffee_id' id='create_orders_has_coffees_coffee_id' required>
+                 <option value='' disabled selected>Select an Coffee</option>
+                {{#each coffees}}
+                <option value='{{this.coffee_id}}'>
+                    {{this.name}}
+                    -
+                    {{this.price}}
+                </option>
+                {{/each}}
+            </select>
 
-    <label for='create_orders_has_coffees_qty'>Quantity: </label>
-    <input type='number' name='create_orders_has_coffees_qty' id='create_orders_has_coffees_qty' min="1" />
+            <label for='create_orders_has_coffees_qty'>Quantity: </label>
+            <input type='number' name='create_orders_has_coffees_qty' id='create_orders_has_coffees_qty' min="1" />
 
-    <label for='create_orders_has_coffees_price_at_order'>Price of Order: </label>
-    <input type='number' name='create_orders_has_coffees_price_at_order' id='create_orders_has_coffees_price_at_order' />
+            <label for='create_orders_has_coffees_price_at_order'>Price of Order: </label>
+            <input type='number' name='create_orders_has_coffees_price_at_order' id='create_orders_has_coffees_price_at_order' />
 
-    <input type='submit' />
-</form>
+            <input type='submit' />
+        </form>
+    </div>
 
-{{! UPDATE form }}
-<h2>Update Order-Coffee Entry</h2>
-<form class='cuForm' id='update_orders_has_coffees_form'>
-    <label for='update_order_has_coffees_order_id'>Order: </label>
-    <select name='update_order_has_coffees_order_id' id='update_order_has_coffees_order_id' required>
-        <option value='' disabled selected>Select an Order</option>
-        {{#each orders}}
-        <option value='{{this.order_id}}' required>{{this.order_id}}</option>
-        {{/each}}
-    </select>
+    <div class="forms-section">
+        {{! UPDATE form }}
+        <h2>Update Order-Coffee Entry</h2>
+        <form class='cuForm' id='update_orders_has_coffees_form'>
+            <label for='update_order_has_coffees_order_id'>Order: </label>
+            <select name='update_order_has_coffees_order_id' id='update_order_has_coffees_order_id' required>
+                <option value='' disabled selected>Select an Order</option>
+                {{#each orders}}
+                <option value='{{this.order_id}}' required>{{this.order_id}}</option>
+                {{/each}}
+            </select>
 
-    <label for='updateorders_has_coffees_coffee_id'>Coffee: </label>
-    <select name='update_orders_has_coffees_coffee_id' id='update_orders_has_coffees_coffee_id' required>
-         <option value='' disabled selected>Select an Coffee</option>
-        {{#each coffees}}
-        <option value='{{this.coffee_id}}'>
-            {{this.name}}
-        </option>
-        {{/each}}
-    </select>
+            <label for='updateorders_has_coffees_coffee_id'>Coffee: </label>
+            <select name='update_orders_has_coffees_coffee_id' id='update_orders_has_coffees_coffee_id' required>
+                 <option value='' disabled selected>Select an Coffee</option>
+                {{#each coffees}}
+                <option value='{{this.coffee_id}}'>
+                    {{this.name}}
+                </option>
+                {{/each}}
+            </select>
 
 
-    <label for='update_orders_has_coffees_qty'>Quantity: </label>
-    <input type='number' name='update_orders_has_coffees_qty' id='update_orders_has_coffees_qty' />
+            <label for='update_orders_has_coffees_qty'>Quantity: </label>
+            <input type='number' name='update_orders_has_coffees_qty' id='update_orders_has_coffees_qty' />
 
-    <label for='update_orders_has_coffees_price_at_order'>Price at Order: </label>
-    <input type='number'  name='update_orders_has_coffees_price_at_order' id='update_orders_has_coffees_price_at_order' />
+            <label for='update_orders_has_coffees_price_at_order'>Price at Order: </label>
+            <input type='number'  name='update_orders_has_coffees_price_at_order' id='update_orders_has_coffees_price_at_order' />
 
-    <input type='submit' />
-</form>
+            <input type='submit' />
+        </form>
+    </div>
+</div>

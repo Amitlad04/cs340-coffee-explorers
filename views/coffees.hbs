@@ -38,56 +38,63 @@
     </tbody>
 </table>
 
-{{! CREATE form }}
-<h2>Add a Coffee</h2>
-<form class='cuForm' id='create_coffee_form'>
-    <label for='create_coffee_name'>Name: </label>
-    <input type='text' name='create_coffee_name' id='create_coffee_name' required />
 
-    <label for='create_coffee_price'>Price: </label>
-    <input type='number' step='0.01' name='create_coffee_price' id='create_coffee_price' required />
+<div class="forms-container">
+    {{! CREATE form }}
+    <div class="form-section">
+        <h2>Add a Coffee</h2>
+        <form class='cuForm' id='create_coffee_form'>
+            <label for='create_coffee_name'>Name: </label>
+            <input type='text' name='create_coffee_name' id='create_coffee_name' required />
 
-    <label for='create_coffee_origin'>Origin: </label>
-    <input type='text' name='create_coffee_origin' id='create_coffee_origin' />
+            <label for='create_coffee_price'>Price: </label>
+            <input type='number' step='0.01' name='create_coffee_price' id='create_coffee_price' required />
 
-    <label for='create_coffee_roast'>Roast Level: </label>
-    <input type='text' name='create_coffee_roast' id='create_coffee_roast' />
+            <label for='create_coffee_origin'>Origin: </label>
+            <input type='text' name='create_coffee_origin' id='create_coffee_origin' />
 
-    <label for='create_coffee_notes'>Flavor Notes: </label>
-    <textarea name='create_coffee_notes' id='create_coffee_notes'></textarea>
+            <label for='create_coffee_roast'>Roast Level: </label>
+            <input type='text' name='create_coffee_roast' id='create_coffee_roast' />
 
-    <input type='submit' />
-</form>
+            <label for='create_coffee_notes'>Flavor Notes: </label>
+            <textarea name='create_coffee_notes' id='create_coffee_notes'></textarea>
 
-{{! UPDATE form }}
-<h2>Update a Coffee</h2>
-<form class='cuForm' id='update_coffee_form'>
-    <label for='update_coffee_id'>Coffee to Update: </label>
-    <select name='update_coffee_id' id='update_coffee_id' required>
-        <option value='' disabled selected>Select a Coffee</option>
-        {{#each coffees}}
-        <option value='{{this.coffee_id}}' required>
-            {{this.coffee_id}} 
-            - 
-            {{this.name}}
-        </option>
-        {{/each}}
-    </select>
+            <input type='submit' />
+        </form>
+    </div>
 
-    <label for='update_coffee_name'>Name: </label>
-    <input type='text' name='update_coffee_name' id='update_coffee_name' />
+    <div class="form-section">
+        {{! UPDATE form }}
+        <h2>Update a Coffee</h2>
+        <form class='cuForm' id='update_coffee_form'>
+            <label for='update_coffee_id'>Coffee to Update: </label>
+            <select name='update_coffee_id' id='update_coffee_id' required>
+                <option value='' disabled selected>Select a Coffee</option>
+                {{#each coffees}}
+                <option value='{{this.coffee_id}}' required>
+                    {{this.coffee_id}}
+                    -
+                    {{this.name}}
+                </option>
+                {{/each}}
+            </select>
 
-    <label for='update_coffee_price'>Price: </label>
-    <input type='number'  name='update_coffee_price' id='update_coffee_price' />
+            <label for='update_coffee_name'>Name: </label>
+            <input type='text' name='update_coffee_name' id='update_coffee_name' />
 
-    <label for='update_coffee_origin'>Origin: </label>
-    <input type='text' name='update_coffee_origin' id='update_coffee_origin' />
+            <label for='update_coffee_price'>Price: </label>
+            <input type='number'  name='update_coffee_price' id='update_coffee_price' />
 
-    <label for='update_coffee_roast'>Roast Level: </label>
-    <input type='text' name='update_coffee_roast' id='update_coffee_roast' />
+            <label for='update_coffee_origin'>Origin: </label>
+            <input type='text' name='update_coffee_origin' id='update_coffee_origin' />
 
-    <label for='update_coffee_notes'>Flavor Notes: </label>
-    <textarea name='update_coffee_notes' id='update_coffee_notes'></textarea>
+            <label for='update_coffee_roast'>Roast Level: </label>
+            <input type='text' name='update_coffee_roast' id='update_coffee_roast' />
 
-    <input type='submit' />
-</form>
+            <label for='update_coffee_notes'>Flavor Notes: </label>
+            <textarea name='update_coffee_notes' id='update_coffee_notes'></textarea>
+
+            <input type='submit' />
+        </form>
+    </div>
+</div>

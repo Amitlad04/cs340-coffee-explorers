@@ -1,14 +1,100 @@
-h1, h2 { margin-left: 16px;}
-table {border-collapse: collapse;margin-left: 32px;}
+h1, h2 {
+    margin-left: 16px;
+}
+
+table {
+    border-collapse: collapse;
+    margin-left: 32px;
+}
+
 th, td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: center;
 }
-th {background-color: #f2f2f2;}
-tr:nth-child(even) {background-color: #f9f9f9;}
-.cuForm { margin-left: 32px;}
-input, select { margin-bottom: 4px;margin-right: 12px;}
-nav {background-color: #cecece;padding: 16px;}
-a {margin-left: 16px;}
-.homepageDescription {margin-left: 32px;}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.cuForm {
+    margin-left: 32px;
+}
+
+input, select {
+    margin-bottom: 4px;
+    margin-right: 12px;
+}
+
+nav {
+    background-color: #cecece;
+    padding: 16px;
+}
+
+a {
+    margin-left: 16px;
+}
+
+.homepageDescription {
+    margin-left: 32px;
+}
+
+/* Form Styles */
+form {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    gap: 15px;
+    max-width: 100%;
+    align-items: center;
+}
+
+form label {
+    text-align: right;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="tel"],
+form input[type="month"],
+form input[type="number"],
+form select {
+    padding: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+form input[type="submit"] {
+    grid-column: 2;
+    padding: 10px 20px;
+    width: 150px;
+    margin-top: 10px;
+}
+
+/* Side-by-Side Forms Container */
+.forms-container {
+    display: flex;
+    gap: 40px;
+    margin-left: 32px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.form-section {
+    flex: 1;
+    min-width: 450px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-section h2 {
+    margin-left: 0;
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
+}
