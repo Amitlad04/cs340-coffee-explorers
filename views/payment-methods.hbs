@@ -19,8 +19,8 @@
             <td>{{this.cvv}}</td>
             <td>{{this.cardholder}}</td>
             <td>{{this.expiration}}</td>
-            <td>{{this.first_name}}</td>
-            <td>{{this.last_name}}</td>
+            <td>{{this.[First Name]}}</td>
+            <td>{{this.[Last Name]}}</td>
 
 
 
@@ -58,8 +58,8 @@
     <label for='create_payment_method_number'>Card Number: </label>
     <input type='text' name='create_payment_method_number' id='create_payment_method_number' maxlength="16" required/>
 
-    <label for='create_payment_method_expiration'>Expiration (YYYY-MM-DD): </label>
-    <input type='date' name='create_payment_method_expiration' id='create_payment_method_expiration' required />
+    <label for='create_payment_method_expiration'>Expiration: </label>
+    <input type='month' name='create_payment_method_expiration' id='create_payment_method_expiration' required />
 
     <label for='create_payment_method_cvv'>CVV: </label>
     <input type='text' name='create_payment_method_cvv' id='create_payment_method_cvv' maxlength='4'  required />
@@ -89,8 +89,8 @@
     <label for='update_payment_method_number'>Card Number: </label>
     <input type='text' name='update_payment_method_number' id='update_payment_method_number' maxlength='16' />
 
-    <label for='update_payment_method_expiration'>Expiration (MMYY): </label>
-    <input type='text' name='update_payment_method_expiration' id='update_payment_method_expiration' maxlength='4'  />
+    <label for='update_payment_method_expiration'>Expiration: </label>
+    <input type='month' name='update_payment_method_expiration' id='update_payment_method_expiration' maxlength='4'  />
 
     <label for='update_payment_method_cvv'>CVV: </label>
     <input type='text' name='update_payment_method_cvv' id='update_payment_method_cvv' maxlength='4'  />

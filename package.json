@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "development": "npx nodemon app.js",
-    "production": "npx forever start app.js",
+    "production": "npx forever start --minUptime 1000 --spinSleepTime 1000 app.js",
     "stop_production": "npx forever stop app.js"
   },
   "author": "",
