@@ -50,7 +50,7 @@ router.get('/orders', async function (req, res) {
         // Create and execute our queries
         // In query1, we use a JOIN clause to display the names of customers
         const query1 = `SELECT Orders.order_id, Orders.order_time_date, 
-               Customers.first_name, Customers.last_name FROM Orders
+               Customers.first_name AS "First Name", Customers.last_name AS "Last Name" FROM Orders
                LEFT JOIN Customers ON Orders.customer_id = Customers.customer_id;`;
         const query2 = 'SELECT * FROM Customers;';
         const [orders] = await db.query(query1);
@@ -101,7 +101,7 @@ router.get('/payment-methods', async function (req, res) {
         // In query1, we use a JOIN clause to display the names of customers
         const query1 = `SELECT PaymentMethods.payment_method_id, PaymentMethods.number,
             PaymentMethods.cvv, PaymentMethods.name AS 'cardholder', PaymentMethods.expiration,
-            Customers.first_name, Customers.last_name FROM PaymentMethods
+            Customers.first_name AS 'First Name', Customers.last_name AS 'Last Name' FROM PaymentMethods
             LEFT JOIN Customers ON PaymentMethods.customer_id = Customers.customer_id;`;
         const query2 = 'SELECT * FROM Customers;';
         const [payment_methods] = await db.query(query1);
