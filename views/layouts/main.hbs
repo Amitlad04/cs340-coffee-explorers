@@ -14,7 +14,9 @@
         <a href="/customers">Customers</a>
         <a href="/orders">Orders</a> 
         <a href="/orders-coffees">Orders-Coffee</a>
-        <a href="/payment-methods">Payment Methods</a>
+        <a href="/payment-methods">Payment Methods</a>   
+        <button onclick="fetch('/reset-database', {method: 'POST'}).then(() => location.reload())">RESET DATABASE</button>
+
     </nav>
     {{{body}}}
 </body>

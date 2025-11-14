@@ -24,12 +24,14 @@ const readRoutes = require('./routes/readRoutes');
 const createRoutes = require('./routes/createRoutes');
 const updateRoutes = require('./routes/updateRoutes');
 const deleteRoutes = require('./routes/deleteRoutes');
+const resetRoutes = require('./routes/resetRoutes');
 
 // Use the routes
 app.use(readRoutes);
 app.use(createRoutes);
 app.use(updateRoutes);
 app.use(deleteRoutes);
+app.use(resetRoutes);
 
 // READ ROUTES
 app.get('/', async function (req, res) {

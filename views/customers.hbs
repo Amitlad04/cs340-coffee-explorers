@@ -26,8 +26,8 @@
 
 
             {{! DELETE form }}
-            <form id='delete_coffee_form'>
-                <input type='hidden' name='delete_customer_id' value='{{this.coffee_id}}' />
+            <form id='delete_coffee_form' method='POST' action='/customers/delete'>
+                <input type='hidden' name='delete_customer_id' value='{{this.customer_id}}' />
                 <input type='hidden' name='delete_customer_first_name' value='{{this.first_name}}' />
                 <input type='hidden' name='delete_customer_last_name' value='{{this.last_name}}' />
                 <td>
@@ -45,7 +45,7 @@
      <div class="forms-section">
         {{! CREATE form }}
         <h2>Add a Customer</h2>
-        <form class='cuForm' id='create_customer_form'>
+        <form class='cuForm' id='create_customer_form' method='POST' action='/customers/create'>
             <label for='create_customer_first_name'>First name: </label>
             <input type='text' name='create_customer_first_name' id='create_customer_first_name' required />
 
@@ -76,7 +76,7 @@
      <div class="form-section">
         {{! UPDATE form }}
         <h2>Update a Customer</h2>
-        <form class='cuForm' id='update_customer_form'>
+        <form class='cuForm' id='update_customer_form', method='POST' action='/customers/update'>
             <label for='update_customer_id'>Customer to Update: </label>
             <select name='update_customer_id' id='update_customer_id' required>
                 <option value='' disabled selected>Select a Customer</option>
