@@ -41,7 +41,30 @@ router.post('/customers/create', async function (req, res) {
     }
 });
 
+// CREATE route for Orders
+router.post('/orders/create', async function (req, res) {
+    try {
+        let data = req.body;
 
+        const query1 = `CALL sp_CreateOrder(?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query1, [
+            data.create_order_time_date,
+            data.create_order_customer
+        ]);
+
+        console.log(`CREATE order. ID: ${rows.new_id} ` +
+            `Customer: ${data.create_order_customer} Date: ${data.create_order_time_date}`
+);
+
+        res.redirect('/orders');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
 
 
 // Export the router so app.js can use it

@@ -58,7 +58,7 @@ BEGIN
     BEGIN 
         ROLLBACK;
         RESIGNAL;
-    END;
+    END;j
 
     START TRANSACTION;
         DELETE FROM PaymentMethods WHERE customer_id = p_customer_id;
@@ -66,6 +66,60 @@ BEGIN
 
         IF ROW_COUNT() = 0 THEN 
             SET error_message = CONCAT('No matching record found in Customers for customer_id: ', p_customer_id);
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+    COMMIT;
+END //
+DELIMITER ;
+
+
+DROP PROCEDURE IF EXISTS sp_CreateOrder;
+
+DELIMITER //
+CREATE PROCEDURE sp_CreateOrder(
+    IN p_order_time_date DATETIME,
+    IN p_customer_id INT,
+    OUT p_order_id INT
+)
+BEGIN
+    INSERT INTO `Orders` (order_time_date, customer_id)
+    VALUES(p_order_time_date, p_customer_id);
+
+    SELECT LAST_INSERT_ID() into p_order_id;
+    SELECT LAST_INSERT_ID() AS 'new_id';
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_UpdateOrder;
+DELIMITER // 
+CREATE PROCEDURE sp_UpdateOrder(
+    IN p_order_id INT,
+    IN p_order_time_date DATETIME, 
+    IN p_customer_id INT
+    )
+BEGIN 
+    UPDATE Orders SET order_time_date = p_order_time_date, customer_id = p_customer_id
+    WHERE order_id = p_order_id;
+
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_DeleteOrder; 
+DELIMITER //
+CREATE PROCEDURE sp_DeleteOrder(IN p_order_id INT)
+BEGIN 
+    DECLARE error_message VARCHAR(255);
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN  
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION; 
+        DELETE FROM Orders WHERE order_id = p_order_id;
+
+        IF ROW_COUNT() = 0 THEN 
+            SET error_message = CONCAT('No matching record found in Orders for order_id: ', p_order_id);
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
         END IF;
     COMMIT;

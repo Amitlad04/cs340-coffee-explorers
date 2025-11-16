@@ -23,7 +23,7 @@
 
 
             {{! DELETE form }}
-            <form id='delete_orders_form'>
+            <form id='delete_orders_form'  method='POST' action='/orders/delete'>
                 <input type='hidden' name='delete_order_id' value='{{this.order_id}}' />
                 <td>
                     <button type='submit'>
@@ -40,7 +40,7 @@
     <div class="form-section">
         {{! CREATE form }}
         <h2>Create an Order</h2>
-        <form class='cuForm' id='create_order_form'>
+        <form class='cuForm' id='create_order_form' method='POST' action='/orders/create'>
           <label for="create_order_time_date">Order Date and Time: </label>
           <input type="datetime-local" name="create_order_time_date" id="create_order_time_date" required />
 
@@ -61,21 +61,21 @@
     <div class="form-section">
         {{! UPDATE form }}
         <h2>Order to Update:</h2>
-        <form class='cuForm' id='update_order_form'>
-            <label for='update_order_time_date'>Select an Order to Update: </label>
-            <select name='update_order_time_date' id='update_order_time_date' required>
+        <form class='cuForm' id='update_order_form' method='POST' action='/orders/update'>
+            <label for='update_order_id'>Select an Order to Update: </label>
+            <select name='update_order_id' id='update_order_id' required>
                 <option value='' disabled selected>Select an Order</option>
                 {{#each orders}}
-                <option value='{{this.order_time_date}}' required>
+                <option value='{{this.this.order_id}}' required>
                     {{this.order_id}} - {{this.order_time_date}}
                 </option>
                 {{/each}}
             </select>
-            <label for="create_order_time_date">Order Date and Time: </label>
-            <input type="datetime-local" name="create_order_time_date" id="create_order_time_date" required />
+            <label for="update_order_time_date">Order Date and Time: </label>
+            <input type="datetime-local" name="update_order_time_date" id="update_order_time_date" required />
 
-            <label for="create_order_customer">Customer: </label>
-            <select name="create_order_customer" id="create_order_customer" required>
+            <label for="update_order_customer">Customer: </label>
+            <select name="update_order_customer" id="update_order_customer" required>
                 <option value="" disabled selected>Select a Customer</option>
                 {{#each customers}}
                     <option value="{{this.customer_id}}">
