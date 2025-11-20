@@ -58,7 +58,7 @@ BEGIN
     BEGIN 
         ROLLBACK;
         RESIGNAL;
-    END;j
+    END;
 
     START TRANSACTION;
         DELETE FROM PaymentMethods WHERE customer_id = p_customer_id;
