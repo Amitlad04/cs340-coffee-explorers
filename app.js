@@ -33,7 +33,7 @@ app.use(updateRoutes);
 app.use(deleteRoutes);
 app.use(resetRoutes);
 
-// READ ROUTES
+// HOME PAGE ROUTE
 app.get('/', async function (req, res) {
     try {
         res.render('home'); // Render the home.hbs file

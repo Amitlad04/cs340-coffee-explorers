@@ -2,6 +2,7 @@
 
 <table>
     <thead>
+        <tr>
             {{#each orders_coffees.[0]}}
             <th>
                 {{@key}}
@@ -15,7 +16,9 @@
         {{#each orders_coffees}}
         <tr>
             <td>{{this.order_id}}</td>
-            <td>{{this.name}}</td>
+            <td>{{this.customer}}</td>
+            <td>{{this.line_item_id}}</td>
+            <td>{{this.coffee}}</td>
             <td>{{this.qty}}</td>
             <td>{{this.price_at_order}}</td>
 
@@ -43,12 +46,12 @@
             <select name='create_order_has_coffees_order_id' id='create_order_has_coffees_order_id' required>
                 <option value='' disabled selected>Select an Order</option>
                 {{#each orders}}
-                <option value='{{this.order_id}}' required>{{this.order_id}}</option>
+                    <option value='{{this.order_id}}' required>#{{this.order_id}} - {{this.customer}}</option>
                 {{/each}}
             </select>
             <label for='create_orders_has_coffees_coffee_id'>Coffee: </label>
             <select name='create_orders_has_coffees_coffee_id' id='create_orders_has_coffees_coffee_id' required>
-                 <option value='' disabled selected>Select an Coffee</option>
+                 <option value='' disabled selected>Select a Coffee</option>
                 {{#each coffees}}
                 <option value='{{this.coffee_id}}'>
                     {{this.name}}
@@ -62,7 +65,7 @@
             <input type='number' name='create_orders_has_coffees_qty' id='create_orders_has_coffees_qty' min="1" />
 
             <label for='create_orders_has_coffees_price_at_order'>Price of Order: </label>
-            <input type='number' name='create_orders_has_coffees_price_at_order' id='create_orders_has_coffees_price_at_order' />
+            <input type='number' step=".01" name='create_orders_has_coffees_price_at_order' id='create_orders_has_coffees_price_at_order' />
 
             <input type='submit' />
         </form>
@@ -76,13 +79,13 @@
             <select name='update_order_has_coffees_order_id' id='update_order_has_coffees_order_id' required>
                 <option value='' disabled selected>Select an Order</option>
                 {{#each orders}}
-                <option value='{{this.order_id}}' required>{{this.order_id}}</option>
+                    <option value='{{this.order_id}}' required>#{{this.order_id}} - {{this.customer}}</option>
                 {{/each}}
             </select>
 
             <label for='updateorders_has_coffees_coffee_id'>Coffee: </label>
             <select name='update_orders_has_coffees_coffee_id' id='update_orders_has_coffees_coffee_id' required>
-                 <option value='' disabled selected>Select an Coffee</option>
+                 <option value='' disabled selected>Select a Coffee</option>
                 {{#each coffees}}
                 <option value='{{this.coffee_id}}'>
                     {{this.name}}
@@ -95,7 +98,7 @@
             <input type='number' name='update_orders_has_coffees_qty' id='update_orders_has_coffees_qty' />
 
             <label for='update_orders_has_coffees_price_at_order'>Price at Order: </label>
-            <input type='number'  name='update_orders_has_coffees_price_at_order' id='update_orders_has_coffees_price_at_order' />
+            <input type='number'  name='update_orders_has_coffees_price_at_order' id='update_orders_has_coffees_price_at_order' step=".01"/>
 
             <input type='submit' />
         </form>
