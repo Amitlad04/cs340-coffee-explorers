@@ -1,5 +1,3 @@
-
-
 DROP PROCEDURE IF EXISTS sp_load_coffeedb;
 DELIMITER //
 CREATE PROCEDURE sp_load_coffeedb()
@@ -51,9 +49,9 @@ BEGIN
     --
 
     INSERT INTO `Customers` (`customer_id`, `first_name`, `last_name`, `street`, `city`, `state`, `zip`, `email`, `phone`) VALUES
-    (2, 'Jane', 'Doe', '750 Baker St', 'Portland', 'OR', '97035', 'jane.doe@customer.com', '6035555522'),
-    (3, 'John', 'Smith', '2474 Pine St', 'Eugene', 'OR', '97401', 'john.smith@customer.com', '5415433456'),
-    (4, 'Lane', 'Johnson', '146 Main St', 'Phoenix', 'OR', '97535', 'lane.johnson@customer.com', '5032551234');
+    (1, 'Jane', 'Doe', '750 Baker St', 'Portland', 'OR', '97035', 'jane.doe@customer.com', '6035555522'),
+    (2, 'John', 'Smith', '2474 Pine St', 'Eugene', 'OR', '97401', 'john.smith@customer.com', '5415433456'),
+    (3, 'Lane', 'Johnson', '146 Main St', 'Phoenix', 'OR', '97535', 'lane.johnson@customer.com', '5032551234');
 
     -- --------------------------------------------------------
 
@@ -73,9 +71,9 @@ BEGIN
     --
 
     INSERT INTO `Orders` (`order_id`, `order_time_date`, `customer_id`) VALUES
-    (4, '2024-11-23 00:00:00', 2),
-    (5, '2024-12-20 00:00:00', 3),
-    (6, '2025-01-05 00:00:00', 4);
+    (1, '2024-11-23 00:00:00', 1),
+    (2, '2024-12-20 00:00:00', 2),
+    (3, '2025-01-05 00:00:00', 3);
 
     -- --------------------------------------------------------
 
@@ -85,6 +83,7 @@ BEGIN
     DROP TABLE IF EXISTS `OrdersCoffees`;
 
     CREATE TABLE IF NOT EXISTS `OrdersCoffees` (
+    `line_item_id` int(11) NOT NULL,
     `order_id` int(11) NOT NULL,
     `coffee_id` int(11) NOT NULL,
     `qty` int(11) NOT NULL DEFAULT 1,
@@ -95,15 +94,15 @@ BEGIN
     -- Dumping data for table `Orders_has_Coffees`
     --
 
-    INSERT INTO `OrdersCoffees` (`order_id`, `coffee_id`, `qty`, `price_at_order`) VALUES
-    (4, 1, 2, 18.49),
-    (4, 2, 1, 24.99),
-    (4, 3, 1, 20.24),
-    (5, 1, 2, 18.49),
-    (5, 3, 3, 20.24),
-    (6, 1, 2, 18.49),
-    (6, 2, 3, 24.99),
-    (6, 3, 1, 20.24);
+    INSERT INTO `OrdersCoffees` (`line_item_id`, `order_id`, `coffee_id`, `qty`, `price_at_order`) VALUES
+    (1, 1, 1, 2, 18.49),
+    (2, 1, 2, 1, 24.99),
+    (3, 1, 3, 1, 20.24),
+    (4, 2, 1, 2, 18.49),
+    (5, 2, 3, 3, 20.24),
+    (6, 3, 1, 2, 18.49),
+    (7, 3, 2, 3, 24.99),
+    (8, 3, 3, 1, 20.24);
 
     -- --------------------------------------------------------
 
@@ -126,9 +125,9 @@ BEGIN
     --
 
     INSERT INTO `PaymentMethods` (`payment_method_id`, `number`, `cvv`, `name`, `customer_id`, `expiration`) VALUES
-    (4, '1234432156788765', '555', 'John Doe', 2, '2026-11-30'),
-    (5, '4567432155558765', '151', 'John Smith', 3, '2028-01-31'),
-    (6, '4321555545678765', '891', 'Lane Johnson', 4, '2029-07-31');
+    (1, '1234432156788765', '555', 'John Doe', 1, '2026-11-30'),
+    (2, '4567432155558765', '151', 'John Smith', 2, '2028-01-31'),
+    (3, '4321555545678765', '891', 'Lane Johnson', 3, '2029-07-31');
 
     --
     -- Indexes for dumped tables
@@ -157,10 +156,10 @@ BEGIN
     ADD KEY `fk_Orders_Customers1_idx` (`customer_id`);
 
     --
-    -- Indexes for table `Orders_has_Coffees`
+    -- Indexes for table `OrdersCoffees`
     --
     ALTER TABLE `OrdersCoffees`
-    ADD PRIMARY KEY (`order_id`,`coffee_id`),
+    ADD PRIMARY KEY (`line_item_id`),
     ADD KEY `fk_OrdersCoffees_Coffees1_idx` (`coffee_id`),
     ADD KEY `fk_OrdersCoffees_Orders_idx` (`order_id`);
 
@@ -187,19 +186,25 @@ BEGIN
     -- AUTO_INCREMENT for table `Customers`
     --
     ALTER TABLE `Customers`
-    MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+    MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
     --
     -- AUTO_INCREMENT for table `Orders`
     --
     ALTER TABLE `Orders`
-    MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+    MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+    --
+    -- AUTO_INCREMENT for table `OrdersCoffees`
+    --
+    ALTER TABLE `OrdersCoffees`
+    MODIFY `line_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
     --
     -- AUTO_INCREMENT for table `PaymentMethods`
     --
     ALTER TABLE `PaymentMethods`
-    MODIFY `payment_method_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+    MODIFY `payment_method_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
     --
     -- Constraints for dumped tables
@@ -217,6 +222,9 @@ BEGIN
     ALTER TABLE `OrdersCoffees`
     ADD CONSTRAINT `fk_OrdersCoffees_Coffees1` FOREIGN KEY (`coffee_id`) REFERENCES `Coffees` (`coffee_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
     ADD CONSTRAINT `fk_OrdersCoffees_Orders` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
+
+    ALTER TABLE `OrdersCoffees`
+    ADD CONSTRAINT unique_order_coffee UNIQUE (order_id, coffee_id);
 
     --
     -- Constraints for table `PaymentMethods`

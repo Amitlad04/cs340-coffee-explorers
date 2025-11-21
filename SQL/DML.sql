@@ -20,10 +20,11 @@ FROM Customers;
 -- Orders Queries
 --------------------
 
--- Get all orders with customers first and last name
-SELECT Orders.order_id, Orders.order_time_date, Customers.first_name, Customers.last_name 
+-- Get all orders with customer names
+SELECT Orders.order_id, Orders.order_time_date, 
+    CONCAT(Customers.first_name, ' ', Customers.last_name) AS "name"
 FROM Orders
-LEFT JOIN Customers ON Orders.customer_id = Customers.customer_id;
+JOIN Customers ON Orders.customer_id = Customers.customer_id;
 
 -- Get the order id
 SELECT order_id 
@@ -46,10 +47,16 @@ WHERE order_id = :order_id;
 --OrdersCoffees
 --------------------
 
--- get all coffee line items
-SELECT OrdersCoffees.order_id, Coffees.name, OrdersCoffees.qty, OrdersCoffees.price_at_order 
-FROM OrdersCoffees
-LEFT JOIN Coffees ON OrdersCoffees.coffee_id = Coffees.coffee_id;
+-- get all coffee line items with order number and customer name
+SELECT OrdersCoffees.order_id,
+    CONCAT(Customers.first_name, " ", Customers.last_name) AS "customer",
+    OrdersCoffees.line_item_id, Coffees.name AS "coffee", OrdersCoffees.qty,
+    OrdersCoffees.price_at_order FROM OrdersCoffees
+            JOIN Coffees ON OrdersCoffees.coffee_id = Coffees.coffee_id
+            JOIN Orders ON OrdersCoffees.order_id = Orders.order_id
+            JOIN Customers ON Customers.customer_id = Orders.customer_id
+    ORDER BY OrdersCoffees.order_id, OrdersCoffees.line_item_id;
+
 
 -- Insert line item 
 INSERT INTO OrdersCoffees (order_id, coffee_id, qty, price_at_order)
@@ -74,7 +81,7 @@ AND coffee_id = :coffee_id;
 SELECT PaymentMethods.payment_method_id, PaymentMethods.number, PaymentMethods.cvv, PaymentMethods.name AS 'cardholder', 
     PaymentMethods.expiration, Customers.first_name, Customers.last_name 
 FROM PaymentMethods
-LEFT JOIN Customers ON PaymentMethods.customer_id = Customers.customer_id;
+JOIN Customers ON PaymentMethods.customer_id = Customers.customer_id;
 
 -- Add payment method (one per customer due to UNIQUE on customer_id)
 INSERT INTO PaymentMethods (number, expiration, cvv, name, customer_id)
