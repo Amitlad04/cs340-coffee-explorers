@@ -125,3 +125,44 @@ BEGIN
     COMMIT;
 END //
 DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_CreateOrdersCoffee;
+
+DELIMITER //
+CREATE PROCEDURE sp_CreateOrdersCoffee(
+    IN p_order_id INT,
+    IN p_coffee_id INT,
+    IN p_qty INT,
+    IN p_price_at_order DECIMAL(6,2),  
+    OUT p_line_item_id INT
+)
+BEGIN
+    INSERT INTO `OrdersCoffees` (order_id, coffee_id, qty, price_at_order)
+    VALUES(p_order_id, p_coffee_id, p_qty, p_price_at_order);
+
+    SELECT LAST_INSERT_ID() into p_line_item_id;
+    SELECT LAST_INSERT_ID() AS 'new_id';
+END //
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS sp_DeleteOrdersCoffee; 
+DELIMITER //
+CREATE PROCEDURE sp_DeleteOrdersCoffee(IN p_line_item_id INT)
+BEGIN 
+    DECLARE error_message VARCHAR(255);
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN  
+        ROLLBACK;
+        RESIGNAL;
+    END;
+
+    START TRANSACTION; 
+        DELETE FROM OrdersCoffees WHERE line_item_id = p_line_item_id;
+
+        IF ROW_COUNT() = 0 THEN 
+            SET error_message = CONCAT('No matching record found in Orders for order_id: ', p_line_item_id);
+            SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = error_message;
+        END IF;
+    COMMIT;
+END //
+DELIMITER ;
