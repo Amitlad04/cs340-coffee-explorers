@@ -55,7 +55,7 @@ router.post('/orders/create', async function (req, res) {
 
         console.log(`CREATE order. ID: ${rows.new_id} ` +
             `Customer: ${data.create_order_customer} Date: ${data.create_order_time_date}`
-);
+        );
 
         res.redirect('/orders');
     } catch (error) {
@@ -67,7 +67,33 @@ router.post('/orders/create', async function (req, res) {
 });
 
 // CREATE route for OrdersCoffee
+router.post('/orders-coffees/create', async function (req, res) {
+    try {
+        let data = req.body;
 
+        const query1 = `CALL sp_CreateOrdersCoffee(?, ?, ?, ?, @new_id);`;
+
+        const [[[rows]]] = await db.query(query1, [
+            data.create_order_has_coffees_order_id,
+            data.create_orders_has_coffees_coffee_id,
+            data.create_orders_has_coffees_qty,
+            data.create_orders_has_coffees_price_at_order,
+
+        ]);
+
+        console.log(`CREATE OrdersCoffee. Line Item ID: ${rows.new_id} ` +
+            `Order: ${data.create_order_has_coffees_order_id} Coffee: ${data.create_orders_has_coffees_coffee_id} Qty: ${data.create_orders_has_coffees_qty}`
+        );
+
+
+        res.redirect('/orders-coffees');
+    } catch (error) {
+        console.error('Error executing queries:', error);
+        res.status(500).send(
+            'An error occurred while executing the database queries.'
+        );
+    }
+});
 
 
 // Export the router so app.js can use it

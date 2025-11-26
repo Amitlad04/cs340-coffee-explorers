@@ -23,14 +23,9 @@
             <td>{{this.price_at_order}}</td>
 
             {{! DELETE form }}
-            <form id='delete_coffee_form'>
-                <input type='hidden' name='delete_order_id' value='{{this.Orders_order_id}}' />
-                <input type='hidden' name='delete_coffee_id' value='{{this.Coffees_coffee_id}}' />
-                <td>
-                    <button type='submit'>
-                        Delete
-                    </button>
-                </td>
+            <form id='delete_orders_coffees_form' method='POST' action='/orders-coffees/delete'>
+                <input type='hidden' name='delete_line_item_id' value='{{this.line_item_id}}' />
+                 <td><button type='submit'>Delete</button></td>
             </form>
         </tr>
         {{/each}}
@@ -41,7 +36,7 @@
     <div class="forms-section">
         {{! CREATE form }}
         <h2>Add a Coffee to Order</h2>
-        <form class='cuForm' id='create_orders_has_coffees_form'>
+        <form class='cuForm' id='create_orders_has_coffees_form' method='POST' action='/orders-coffees/create'>
             <label for='create_order_has_coffees_order_id'>Order: </label>
             <select name='create_order_has_coffees_order_id' id='create_order_has_coffees_order_id' required>
                 <option value='' disabled selected>Select an Order</option>
