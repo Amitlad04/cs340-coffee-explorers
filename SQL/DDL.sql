@@ -223,9 +223,6 @@ BEGIN
     ADD CONSTRAINT `fk_OrdersCoffees_Coffees1` FOREIGN KEY (`coffee_id`) REFERENCES `Coffees` (`coffee_id`) ON DELETE CASCADE ON UPDATE NO ACTION,
     ADD CONSTRAINT `fk_OrdersCoffees_Orders` FOREIGN KEY (`order_id`) REFERENCES `Orders` (`order_id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 
-    ALTER TABLE `OrdersCoffees`
-    ADD CONSTRAINT unique_order_coffee UNIQUE (order_id, coffee_id);
-
     --
     -- Constraints for table `PaymentMethods`
     --
