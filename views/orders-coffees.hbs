@@ -65,37 +65,4 @@
             <input type='submit' />
         </form>
     </div>
-
-    <div class="forms-section">
-        {{! UPDATE form }}
-        <h2>Update Order-Coffee Entry</h2>
-        <form class='cuForm' id='update_orders_has_coffees_form'>
-            <label for='update_order_has_coffees_order_id'>Order: </label>
-            <select name='update_order_has_coffees_order_id' id='update_order_has_coffees_order_id' required>
-                <option value='' disabled selected>Select an Order</option>
-                {{#each orders}}
-                    <option value='{{this.order_id}}' required>#{{this.order_id}} - {{this.customer}}</option>
-                {{/each}}
-            </select>
-
-            <label for='updateorders_has_coffees_coffee_id'>Coffee: </label>
-            <select name='update_orders_has_coffees_coffee_id' id='update_orders_has_coffees_coffee_id' required>
-                 <option value='' disabled selected>Select a Coffee</option>
-                {{#each coffees}}
-                <option value='{{this.coffee_id}}'>
-                    {{this.name}}
-                </option>
-                {{/each}}
-            </select>
-
-
-            <label for='update_orders_has_coffees_qty'>Quantity: </label>
-            <input type='number' name='update_orders_has_coffees_qty' id='update_orders_has_coffees_qty' />
-
-            <label for='update_orders_has_coffees_price_at_order'>Price at Order: </label>
-            <input type='number'  name='update_orders_has_coffees_price_at_order' id='update_orders_has_coffees_price_at_order' step=".01"/>
-
-            <input type='submit' />
-        </form>
-    </div>
 </div>
